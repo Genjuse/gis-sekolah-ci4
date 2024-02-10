@@ -14,7 +14,7 @@ class Home extends BaseController
     public $detail_id_wilayah;
     public function __construct()
     {
-        //test
+
         $this->ModelSetting = new ModelSetting();
         $this->ModelWilayah = new ModelWilayah();
         $this->ModelSekolah = new ModelSekolah();
