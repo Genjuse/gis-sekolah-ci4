@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "datatables": "^1.10.18"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.0"
-  }
-}
