@@ -45,7 +45,7 @@
   <?php foreach ($wilayah as $key => $value) { ?>
     L.geoJSON(<?= $value['geojson'] ?>, {
         fillColor: '<?= $value['warna'] ?>',
-        fillOpacity: 0.4,
+        fillOpacity: 0.3,
       })
       .bindPopup("<b><?= $value['nama_wilayah'] ?></b>")
       .addTo(map);
@@ -64,7 +64,8 @@
         "<b><?= $value['nama_sekolah'] ?></b><br>" +
         "Akreditasi <?= $value['akreditasi'] ?><br>" +
         "<?= $value['status'] ?><br><br>" +
-        "<a href='<?= base_url('Home/DetailSekolah/' . $value['id_sekolah']) ?>' class='btn btn-primary btn-xs text-white'>Detail</a>")
+        "<a href='<?= base_url('Home/DetailSekolah/' . $value['id_sekolah']) ?>' class='btn btn-primary btn-xs text-white'>Detail</a>" +
+        " <a href='https://www.google.com/maps/dir/?api=1&destination=<?= $value['coordinat'] ?>' class='btn btn-primary btn-xs text-white' target='_blank'>Rute</a>")
       .addTo(map);
   <?php } ?>
 </script>
