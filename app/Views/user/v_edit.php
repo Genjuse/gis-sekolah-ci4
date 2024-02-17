@@ -21,8 +21,8 @@
 
       <div class="form-group">
         <label>E-Mail</label>
-        <input name="email" value="<?= $user['email'] ?>" placeholder="E-Mail" class="form-control">
-        <p class="text-danger"><?= $validation->hasError('email') ? $validation->getError('email') : '' ?></p>
+        <input name="username" value="<?= $user['username'] ?>" placeholder="E-Mail" class="form-control">
+        <p class="text-danger"><?= $validation->hasError('username') ? $validation->getError('username') : '' ?></p>
       </div>
 
       <div class="form-group">

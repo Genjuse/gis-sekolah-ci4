@@ -58,7 +58,7 @@
             <tr>
               <td><?= $no++ ?></td>
               <td><?= $value['nama_user'] ?></td>
-              <td class="text-center"><?= $value['email'] ?></td>
+              <td class="text-center"><?= $value['username'] ?></td>
               <td class="text-center"><?= $value['password'] ?></td>
               <td class="text-center"><img src="<?= base_url('foto/' . $value['foto']) ?>" width="100px" height="100px"></td>
               <td class="text-center">

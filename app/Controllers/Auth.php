@@ -24,8 +24,8 @@ protected $ModelAuth;
     public function CekLogin()
     {
         if ($this->validate([
-            'email' => [
-                'label' => 'E-Mail',
+            'username' => [
+                'label' => 'Username',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Wajib Diisi !!'
@@ -40,14 +40,16 @@ protected $ModelAuth;
             ],
         ])) {
             //jika login 
-            $email = $this->request->getPost('email');
+            $username = $this->request->getPost('username');
             $password = $this->request->getPost('password');
-            $CekLogin = $this->ModelAuth->Login($email, $password);
+            $CekLogin = $this->ModelAuth->Login($username, $password);
             if ($CekLogin) {
                 # jika berhasil Login
                 session()->set('nama_user', $CekLogin['nama_user']);
                 session()->set('foto', $CekLogin['foto']);
                 session()->set('login', 1);
+                session()->set('privilege', $CekLogin['privilege']);
+                session()->set('npsn', $CekLogin['npsn']);
                 return redirect()->to('Admin');
             } else {
                 # jika gagal login...

@@ -45,7 +45,7 @@ protected $ModelUser;
                     'required' => '{field} Wajib Diisi !!'
                 ]
             ],
-            'email' => [
+            'username' => [
                 'label' => 'E-Mail',
                 'rules' => 'required',
                 'errors' => [
@@ -73,7 +73,7 @@ protected $ModelUser;
             //jika validasi berhasil
             $data = [
                 'nama_user' => $this->request->getPost('nama_user'),
-                'email' => $this->request->getPost('email'),
+                'username' => $this->request->getPost('username'),
                 'password' => $this->request->getPost('password'),
                 'foto' => $nama_file_foto,
             ];
@@ -109,7 +109,7 @@ protected $ModelUser;
                     'required' => '{field} Wajib Diisi !!'
                 ]
             ],
-            'email' => [
+            'username' => [
                 'label' => 'E-Mail',
                 'rules' => 'required',
                 'errors' => [
@@ -145,7 +145,7 @@ protected $ModelUser;
             $data = [
                 'id_user' => $id_user,
                 'nama_user' => $this->request->getPost('nama_user'),
-                'email' => $this->request->getPost('email'),
+                'username' => $this->request->getPost('username'),
                 'password' => $this->request->getPost('password'),
                 'foto' => $nama_file_foto,
             ];
@@ -155,7 +155,8 @@ protected $ModelUser;
         } else {
             //jika validasi gagal
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to('Sekolah/Input')->withInput('validation', \Config\Services::validation());
+            // redirect back
+            return redirect()->back()->withInput('validation', \Config\Services::validation());
         }
     }
 

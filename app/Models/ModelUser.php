@@ -8,6 +8,11 @@ class ModelUser extends Model
 {
     public function AllData()
     {
+        if (session()->get('npsn') != null && session()->get('privilege') != 'superadmin') {
+            return $this->db->table('tbl_user')
+                ->where('npsn', session()->get('npsn'))
+                ->get()->getResultArray();
+        }
         return $this->db->table('tbl_user')
             ->get()->getResultArray();
     }

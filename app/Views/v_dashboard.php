@@ -13,21 +13,24 @@
     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>
-<!-- Small boxes (Stat box) -->
-<div class="col-lg-6 col-6">
-  <!-- small box -->
-  <div class="small-box bg-indigo">
-    <div class="inner">
-      <h3><?= $jmlwilayah ?></h3>
 
-      <p>Wilayah</p>
+<?php if(session()->get('privilege') == "superadmin") { ?>
+  <!-- Small boxes (Stat box) -->
+  <div class="col-lg-6 col-6">
+    <!-- small box -->
+    <div class="small-box bg-indigo">
+      <div class="inner">
+        <h3><?= $jmlwilayah ?></h3>
+
+        <p>Wilayah</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <a href="<?= base_url('Sekolah') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    <div class="icon">
-      <i class="fas fa-layer-group"></i>
-    </div>
-    <a href="<?= base_url('Sekolah') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
   </div>
-</div>
+<?php } ?>
 
 <?php
 $db = \Config\Database::connect();

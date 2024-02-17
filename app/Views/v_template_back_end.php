@@ -140,24 +140,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="<?= base_url('Wilayah') ?>" class="nav-link <?= $menu == 'wilayah' ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-layer-group"></i>
-                <p>
-                  Wilayah
-                </p>
-              </a>
-            </li>
+            <?php if(session()->get('privilege') == "superadmin") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url('Wilayah') ?>" class="nav-link <?= $menu == 'wilayah' ? 'active' : '' ?>">
+                  <i class="nav-icon fas fa-layer-group"></i>
+                  <p>
+                    Wilayah
+                  </p>
+                </a>
+              </li>
 
-            <li class="nav-item">
-              <a href="<?= base_url('Jenjang') ?>" class="nav-link <?= $menu == 'jenjang' ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-swimming-pool"></i>
-                <p>
-                  Jenjang
-                </p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="<?= base_url('Jenjang') ?>" class="nav-link <?= $menu == 'jenjang' ? 'active' : '' ?>">
+                  <i class="nav-icon fas fa-swimming-pool"></i>
+                  <p>
+                    Jenjang
+                  </p>
+                </a>
+              </li>
 
+              <li class="nav-item">
+                <a href="<?= base_url('Admin/Setting') ?>" class="nav-link <?= $menu == 'setting' ? 'active' : '' ?>">
+                  <i class="nav-icon fas fa-cogs"></i>
+                  <p>
+                    Setting
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
             <li class="nav-item">
               <a href="<?= base_url('Sekolah') ?>" class="nav-link <?= $menu == 'sekolah' ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-school"></i>
@@ -172,15 +182,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   User
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('Admin/Setting') ?>" class="nav-link <?= $menu == 'setting' ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-cogs"></i>
-                <p>
-                  Setting
                 </p>
               </a>
             </li>
@@ -221,10 +222,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="row">
             <!-- /.isi konten -->
             <?php
-            if ($page) {
-              echo view($page);
-            }
+              $accessibleAdminPages = [
+                  'v_dashboard',
+                  'sekolah/v_index',
+                  'sekolah/v_detail',
+                  'sekolah/v_edit',
+                  'sekolah/v_input',
+                  'user/v_index',
+                  'user/v_detail',
+                  'user/v_edit',
+                  'user/v_input',
+              ];
+
+              if ($page && !in_array($page, $accessibleAdminPages)) {
+                  // Redirect to the desired URL after a short delay
+                  echo "<script>
+                          setTimeout(function() {
+                              window.location.href = '" . site_url('Admin') . "';
+                          }, 100);
+                      </script>";
+                  exit; // Added exit to prevent further execution
+              } else {
+                  echo view($page);
+              }
             ?>
+
             <!-- /end isi konten -->
           </div>
           <!-- /.row -->

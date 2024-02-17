@@ -8,6 +8,12 @@ class ModelSekolah extends Model
 {
     public function AllData()
     {
+        if (session()->get('npsn') != null && session()->get('privilege') != 'superadmin') {
+            return $this->db->table('tbl_sekolah')
+                ->join('tbl_jenjang', 'tbl_jenjang.id_jenjang = tbl_sekolah.id_jenjang', 'left')
+                ->where('npsn', session()->get('npsn'))
+                ->get()->getResultArray();
+        }
         return $this->db->table('tbl_sekolah')
             ->join('tbl_jenjang', 'tbl_jenjang.id_jenjang = tbl_sekolah.id_jenjang', 'left')
             ->get()->getResultArray();
